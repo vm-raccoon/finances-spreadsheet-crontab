@@ -52,10 +52,10 @@ class UpdateCurrencyRates extends BaseTask {
     async #updateRatesNbu() {
         const rates = await this.#fetchNbuCurrencyRates(["usd", "eur"]);
 
-        await this.sheet.loadCells("E5:E6");
+        await this.sheet.loadCells("B7:B8");
 
-        const cellUsd = await this.sheet.getCellByA1("E5");
-        const cellEur = await this.sheet.getCellByA1("E6");
+        const cellUsd = await this.sheet.getCellByA1("B7");
+        const cellEur = await this.sheet.getCellByA1("B8");
 
         cellUsd.value = Number(rates?.usd?.rate || 0);
         cellEur.value = Number(rates?.eur?.rate || 0);
@@ -102,13 +102,13 @@ class UpdateCurrencyRates extends BaseTask {
     async #updateRatesPumb() {
         const rates = await this.#fetchPumbCurrencyRates();
 
-        await this.sheet.loadCells("F5:G6");
+        await this.sheet.loadCells("C7:D8");
 
-        const cellUsdBuy = await this.sheet.getCellByA1("F5");
-        const cellUsdSell = await this.sheet.getCellByA1("G5");
+        const cellUsdBuy = await this.sheet.getCellByA1("C7");
+        const cellUsdSell = await this.sheet.getCellByA1("D7");
 
-        const cellEurBuy = await this.sheet.getCellByA1("F6");
-        const cellEurSell = await this.sheet.getCellByA1("G6");
+        const cellEurBuy = await this.sheet.getCellByA1("C8");
+        const cellEurSell = await this.sheet.getCellByA1("D8");
 
         cellUsdBuy.value = Number(rates.usd.buy || 0);
         cellUsdSell.value = Number(rates.usd.sell || 0);
